@@ -1,5 +1,3 @@
-import java.util.Observable
-import com.sun.codemodel.internal.util.Surrogate.Generator
 
 val x = Map(1 -> 2, 2 -> 3, 3 -> 4)
 def returnSome(k: Int, v:Int) = Some(v)
@@ -25,6 +23,9 @@ one map (e => e * e) //List[Int] = List(1, 4, 9, 16) <-- note this is a new List
 val y = Map(10 -> 11, 12-> 13)
 val zippedMap = x zip y // Map[(Int, Int),(Int, Int)] = Map((1,2) -> (10,11), (2,3) -> (12,13))
 zippedMap.unzip //Iterable[(Int, Int)]) = (List((1,2), (2,3)),List((10,11), (12,13))) ie TWO LISTS
+//flatten a List of Lists
+val anotherList = List(List(1), List(3,4))
+anotherList.flatten
 
 //Concatenate Lists
 one ++ two //List[Int] = List(1, 2, 3, 4, 1, 2, 3, 4, 5)

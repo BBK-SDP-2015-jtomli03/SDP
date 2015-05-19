@@ -43,10 +43,37 @@ object WellSorted {
   }
 }
 
-val list = List(List(1), List(2,3), List(4), List(6,7,8), List(8,9,9), List(1,2,4))
+val list = List(List(), List(2,3), List(4), List(6,7,8), List(8,9,9), List(1,2,4))
 //val list = List(1,1,1,2,2,3,3,3)
-WellSorted.lsortFreq(list)
 
+//Question 8 -> PIE AND MASH
+case class Pie(kind: String)
+val pieKinds = List("Stewed Eels", "Jellied Eels", "only beef", "no mash")
+//mapping pie kind => no in a packet
+val pieNumbers: String => Int = { x => x match{
+  case "Stewed Eels" => 1
+  case "Jellied Eels" => 2
+  case "only beef" => 1
+  case "no mash" => 3
+}
+
+//  8a)
+//  def oneOf[T](ls: List[T]): Generator[T] = choose(0, ls.length - 1).map(e => ls(e))
+//
+//  val pieGen: Generator[Pie] = oneOf(pieKinds).map(string => new Pie(string))
+//
+//  8b)
+//  val piesByKind: Observable[(String, Observable[Pie])] = pieChannel.groupBy(_.kind)
+
+//    8.c)
+//    val pieBoxed: Observable[Observable[Box]] = {
+//      piesByKind.map((pieType, obs) => obs.buffer(pieNumbers(pieType)))
+//    }
+//
+//    8.d) type Box = Seq[Pie] and type Packet = Seq[Box]
+//    val piePackets: Observable[Packet] = Observable.zip(pieBoxed)
+
+}
 
 
 
