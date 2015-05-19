@@ -26,7 +26,15 @@ zippedMap.unzip //Iterable[(Int, Int)]) = (List((1,2), (2,3)),List((10,11), (12,
 //flatten a List of Lists
 val anotherList = List(List(1), List(3,4))
 anotherList.flatten
+//zipAll(list, ifListOneRunsOutFirst, ifListTwoRunsOutFirst)
+one.zipAll(two,100,1000) //ist[(Int, Int)] = List((1,1), (2,2), (3,3), (4,4), (100,5))
 
+//reduceLeftOption -> if use option there is no error for processing empty lists
+one reduceLeftOption ((x, y) => x + y) //Option[Int] = Some(10)
+one reduceLeftOption ((x, y) => x + y) match {
+  case None => None
+  case Some(x) => x
+}            //returns Any = 10
 //Concatenate Lists
 one ++ two //List[Int] = List(1, 2, 3, 4, 1, 2, 3, 4, 5)
 
