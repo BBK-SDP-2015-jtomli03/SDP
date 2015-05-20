@@ -11,6 +11,26 @@ def estimateB(a: Double, bMin: Double, bMax: Double, err: Double) : Double = {
   else estimateB(a, estimate, bMax, err)
 }
 
+// Question 6. BIG INT
+case class BigInt(x: Int){
+  def modulusBigIntegers(x: BigInt): BigInt = ???
+  def addBigIntegers(x: BigInt): BigInt = ???
+
+  def factor(): BigInt = {
+    def helperFactor(acc: BigInt, bigInt: BigInt): BigInt = {
+      val two = new BigInt(2)
+      val one = new BigInt(1)
+      val zero = new BigInt(0)
+      bigInt match {
+        case _ if modulusBigIntegers(two) == zero => two
+        case _ if modulusBigIntegers(acc) == zero => acc
+        case _ => helperFactor(acc.addBigIntegers(one), bigInt)
+      }
+    }
+    helperFactor(new BigInt(3), this)
+  }
+}
+
 //question 7 a)
 def lsort[T](list: List[List[T]]): List[List[T]] =
   list sortWith (_.length < _.length)
@@ -46,7 +66,7 @@ object WellSorted {
 val list = List(List(), List(2,3), List(4), List(6,7,8), List(8,9,9), List(1,2,4))
 //val list = List(1,1,1,2,2,3,3,3)
 
-//Question 8 -> PIE AND MASH
+//Question 8 -> PIE AND MASH (Answers commented out)
 case class Pie(kind: String)
 val pieKinds = List("Stewed Eels", "Jellied Eels", "only beef", "no mash")
 //mapping pie kind => no in a packet
@@ -56,7 +76,6 @@ val pieNumbers: String => Int = { x => x match{
   case "only beef" => 1
   case "no mash" => 3
 }
-
 //  8a)
 //  def oneOf[T](ls: List[T]): Generator[T] = choose(0, ls.length - 1).map(e => ls(e))
 //
