@@ -52,22 +52,6 @@ def singleton(x: Int): MultiSet = {
   y => if(y == x) 1 else 0
 }
 
-//returns the prime factors of a specified Int
-def getPrimeFactors(n: Int): List[Int] = {
-  @tailrec
-  def rec(i: Int, num: Int, acc: List[Int]): List[Int] = {
-    (i until num).find {
-      num % _ == 0
-    }match{
-      case None => num :: acc
-      case Some(x) => rec(i , num / x, x :: acc)
-    }
-  }
-  rec(2, n, List())
-}
-
-getPrimeFactors(147)
-
 
 
 
