@@ -37,3 +37,10 @@ def addTwoToPrimes(list: List[Int]): List[Int] = {
   list filter (isPrime(_)) map (_ + 2)
 }
 addTwoToPrimes(List(1,2,3,4,5,6,7,8,9,10))
+
+//splits primes and non-primes into separate lists
+def splitPrimes(ls: List[Int]): (List[Int], List[Int]) = {
+  ls partition (isPrime(_))
+}
+splitPrimes(List(1,2,3,4,5,6,7,8,9,10)) //returns (List[Int], List[Int]) = (List(1, 2, 3, 5, 7),List(4, 6, 8, 9, 10))
+
