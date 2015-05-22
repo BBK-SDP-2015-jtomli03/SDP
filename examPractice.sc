@@ -11,6 +11,8 @@ def estimateB(a: Double, bMin: Double, bMax: Double, err: Double) : Double = {
   else estimateB(a, estimate, bMax, err)
 }
 
+//Question 5 - Fractal
+
 // Question 6. BIG INT
 case class BigInt(x: Int){
   def modulusBigIntegers(x: BigInt): BigInt = ???

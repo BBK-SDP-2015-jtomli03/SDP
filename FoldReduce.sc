@@ -80,4 +80,3 @@ List("a", "short", "list", "of", "strings").foldLeft(Map[String, Int]()){change}
 
 
 
-
