@@ -1,4 +1,11 @@
 
+def flatt(ls: List[List[Int]]): List[Int] = ls match {
+  case Nil => Nil
+  case hd :: Nil => hd
+  case hd :: tail => hd ++ flatt(tail)
+}
+flatt(List(List(1,2,3), List(4,5,6)))
+
 val x = Map(1 -> 2, 2 -> 3, 3 -> 4)
 def returnSome(k: Int, v:Int) = Some(v)
 x map (e => returnSome(e._1, e._2)) // [Some[Int]] = List(Some(2), Some(3), Some(4))
