@@ -64,5 +64,21 @@ var getMeNone = none.getOrElse("There is nothing!!") //Any = There is nothing!!
 
 val obs = List(1,2,3,4,5,6,7,8,9)
 
+val moi = Map(1 -> ("good", 65), 2 -> ("excel", 90))
+
+def strcat(s1: String, s2: String): String = s1 + s2
+val s = strcat("fred and", " betty")
+def half(s1: String)(s2: String): String = s1 + s2
+def fredAnd = half("fred")_
+
+val rest = fredAnd(" and vera")
+
+def add(n1: Int)( n2: Int): Int = n1 + n2
+
+def add3 = add(3)_
+val six = add3(3)
+ def add100 = add(100)_
+val oneHundAnd = add100(2)
+
 
 
