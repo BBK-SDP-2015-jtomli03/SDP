@@ -7,9 +7,11 @@ def flatt(ls: List[List[Int]]): List[Int] = ls match {
 flatt(List(List(1,2,3), List(4,5,6)))
 
 val x = Map(1 -> 2, 2 -> 3, 3 -> 4)
+
 def returnSome(k: Int, v:Int) = Some(v)
 x map (e => returnSome(e._1, e._2)) // [Some[Int]] = List(Some(2), Some(3), Some(4))
 x flatMap (e => returnSome(e._1, e._2))  //[Int] = List(2, 3, 4)
+
 def returnSomeTuple(k:Int, v:Int) = if (v > 2) Some(k->v) else None
 x map (e => returnSomeTuple(e._1, e._2)) // [Option[(Int, Int)]] = List(None, Some((2,3)), Some((3,4)))
 x flatMap (e => returnSomeTuple(e._1, e._2)) // Map[Int,Int] = Map(2 -> 3, 3 -> 4)
@@ -79,6 +81,30 @@ def add3 = add(3)_
 val six = add3(3)
  def add100 = add(100)_
 val oneHundAnd = add100(2)
+
+def flatten(ls: List[List[Int]]): List[Int] = ls match {
+  case Nil => Nil
+  case hd :: Nil => hd
+  case hd :: tail => hd ++ flatten(tail)
+}
+flatten(List(List(1,2,3,4,5), List(1,2,3,4,5), List(1,2,3,4,5)))
+
+def multiplyList(ls: List[Int], num: Int): List[Int] = ls match {
+  case Nil => Nil
+  case hd :: Nil => List(hd * num)
+  case hd :: tail => hd * num :: multiplyList(tail, num)
+}
+multiplyList(List(1,2,3,4,5), 2)
+
+def sumbyreduce(ls: List[Int]): Int = ls reduceLeft(_ + _)
+
+sumbyreduce(List(1,2,3,4,5))
+
+val tosort = List(1,2,3,4,5,5)
+
+val sorteed = collection.SortedSet(tosort: _*)
+
+
 
 
 

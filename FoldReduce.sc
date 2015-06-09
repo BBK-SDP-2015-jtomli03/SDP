@@ -5,10 +5,10 @@
 def sum(ls: List[Int]): Int = (0::ls) reduceLeft (_ + _)
 
 //this looks neater but will result in an error if applied to an empty List
-def sumWrong(ls: List[Int]): Int = ls reduceLeft (_ + _)
+def sumWrong(ls: List[Int]): Int = (0 :: ls) reduceLeft (_ + _)
 
 //product
-def product(ls: List[Int]): Int = ls reduceLeft (_ * _)
+def product(ls: List[Int]): Int = (1 :: ls) reduceLeft (_ * _)
 
 //note -> in the real world we can just use sum
 List(2, 10, 3, 8, 22).sum
@@ -68,7 +68,17 @@ one.foldLeft(List[String]()){(a, b) => a :+ "a" + b} //returns List[String] = Li
 def change = (acc: Map[String, Int], b: String) => acc + (b -> b.length)
 List("a", "short", "list", "of", "strings").foldLeft(Map[String, Int]()){change} //returns Map[String,Int] = Map(short -> 5, a -> 1, strings -> 7, of -> 2, list -> 4)
 
-
+abstract class MyList[T]{
+  def reduce[T](fn: (T,T) => T): T = this match{
+    case Nil => sys.error("error")
+    case hd :: tail => tail.foldIt(hd)(fn)
+  }
+  def foldIt[U](start: T)(fn: (U, T) => T): T = this match {
+    case Nil => start
+    case hd :: Nil => Nil.foldIt(fn(start, hd))(fn)
+    case hd :: tail => tail.foldIt(fn(start, hd))(fn)
+  }
+}
 
 
 

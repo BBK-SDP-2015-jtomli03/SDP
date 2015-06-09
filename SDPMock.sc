@@ -46,11 +46,41 @@ def iterate[T](x: T)(f: T => T): Stream[T] = {
 //and the number of times it appears otherwise
 type MultiSet = Int => Int
 
-def emptyMultiSet: MultiSet = y => 0
+def emptyMultiSet: MultiSet = x => 0
+def singleton(x: Int): MultiSet = y => if(y == x) 1 else 0
 
-def singleton(x: Int): MultiSet = {
-  y => if(y == x) 1 else 0
+def union(a: MultiSet, b: MultiSet): MultiSet = {
+  x => a(x) + b(x)
 }
+def min(a: Int,b: Int): Int = a min b
+
+def intersect(a: MultiSet, b: MultiSet): MultiSet = {
+  //y => min(a(y), b(y))
+  y => a(y) min b(y)
+}
+
+def diff(a: MultiSet, b: MultiSet): MultiSet = {
+  y => (a(y) - b(y)) max 0
+}
+
+def primeFactors(n: Int): MultiSet = {
+  def returnMultiSet(start: Int, num: Int): MultiSet = {
+    (start until num).find{
+      num % _ == 0
+    }match{
+      case None => singleton(num)
+      case Some(x) => union(singleton(x), returnMultiSet(start, num/x))
+    }
+  }
+  returnMultiSet(2, n)
+}
+
+
+
+
+
+
+
 
 
 

@@ -13,7 +13,7 @@ def getPrimeFactors(n: Int): List[Int] = {
   }
   rec(2, n, List())
 }
-getPrimeFactors(47)
+getPrimeFactors(313)
 
 //checks if a number is prime
 def isPrime(num: Int):Boolean = {

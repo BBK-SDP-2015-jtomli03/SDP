@@ -4,7 +4,7 @@ final case class Add(l: Node, r: Node) extends Node
 final case class Minus(l: Node, r: Node) extends Node
 final case class Mult(l: Node, r: Node) extends Node
 
-val tree = Minus(Mult(Add(Num(4),Num(3)), Num(2)), Add(Num(1),Add(Num(5), Num(6))))
+val tree = Minus(Mult(Add(Num(4),Num(3)), Num(2)), Add(Num(1),Mult(Num(5), Num(6))))
 
 def evaluate(node: Node): Int = node match {
   case Num(x) => x
@@ -21,3 +21,4 @@ def printTree(node: Node): String = node match {
   case Mult(l, r) => "(" + printTree(l) + " * " + printTree(r) + ")"
 }
 printTree(tree)
+
